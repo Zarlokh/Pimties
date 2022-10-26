@@ -1,0 +1,6 @@
+#!/bin/sh
+
+. "$(dirname "$0")"/.common
+
+# We defined MYSQL_PWD environment variable so it is the password that is used and we avoid the warning.
+docker compose exec -e MYSQL_PWD="${MYSQL_PASSWORD}" mysql mysql -u root "$@"

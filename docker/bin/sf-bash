@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if [ -z "$program" ]; then
+    program=$(basename "$0")
+fi
+
+if [ "$program" != "sf-bash" ] ; then
+  set - "$program" "$@"
+fi
+
+type tput >/dev/null 2>&1 && FIX_COLS="--env COLUMNS=$(tput cols) --env LINES=$(tput lines)"
+
+docker compose exec ${FIX_COLS} --user=1000 php "$@"

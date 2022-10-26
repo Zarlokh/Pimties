@@ -1,0 +1,13 @@
+# Global
+alias ll='ls -alh --color'
+alias php-cs-fixer='./vendor/bin/php-cs-fixer fix --verbose --diff --diff-format=udiff --show-progress=estimating'
+
+# Symfony
+alias sf='php bin/console'
+alias sfcc='php bin/console cache:clear'
+alias sfmi='sf do:mi:mi'
+alias sfdoex='sf do:mi:ex'
+alias sfdiff='sf do:mi:diff'
+
+alias sfdropdb='sf do:da:drop --if-exists --force'
+alias sfcreatedb='sf do:da:cr --if-not-exists --no-interaction'

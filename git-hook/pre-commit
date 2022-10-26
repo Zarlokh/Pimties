@@ -1,0 +1,6 @@
+#!/bin/sh
+
+make all-quality
+exitCodeOfMake="$?"
+git add -u
+exit "$exitCodeOfMake"

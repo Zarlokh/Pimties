@@ -1,0 +1,19 @@
+# correct compose options so we can pipe with this script
+if [ -p /dev/stdin ]; then
+    COMPOSE_OPTS="-T"
+else
+    COMPOSE_OPTS=""
+fi
+
+# define projectDir and go
+if [ -z "$projectDir" ]; then
+    projectDir=$(readlink -f $(dirname $0)/../..)
+    cd $projectDir
+fi
+
+# source *.env files so we can access environment variable from host
+for envFile in *.env .env
+do
+    #. $envFile # This can be a source of error with special characters (& or ? for instance)
+    eval "$(sed 's/^\([^=]\+\)=\(.\+\)$/\1="\2"/' $envFile)"
+done
