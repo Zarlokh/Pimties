@@ -10,6 +10,12 @@ services:
     env_file:
       - db.env
 
+  node:
+    image: node:19
+    working_dir: /srv
+    volumes:
+      - ./:/srv/
+
   php:
     build: ./docker/php
     env_file:
