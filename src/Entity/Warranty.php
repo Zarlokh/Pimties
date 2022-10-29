@@ -4,8 +4,10 @@ namespace App\Entity;
 
 use App\Factory\DateTimeFactory;
 use App\Utils\Traits\EntityIdTrait;
+use App\Validator\RequireToggleHideOtherFields;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 #[Entity]
 class Warranty
@@ -16,9 +18,11 @@ class Warranty
     public const NEW_PRODUCT = 1;
 
     #[Column(type:"string", length: 30)]
+    #[NotBlank]
     private ?string $name = null;
 
     #[Column(type: "date_immutable")]
+    #[NotBlank]
     private \DateTimeImmutable $startDate;
 
     #[Column(type: "date_immutable")]

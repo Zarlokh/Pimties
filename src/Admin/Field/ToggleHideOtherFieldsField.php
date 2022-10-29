@@ -8,9 +8,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FieldTrait;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
-use function PHPUnit\Framework\assertIsArray;
-use function PHPUnit\Framework\assertIsString;
-
 final class ToggleHideOtherFieldsField implements FieldInterface
 {
     use FieldTrait;
@@ -20,6 +17,7 @@ final class ToggleHideOtherFieldsField implements FieldInterface
 
     final public const CUSTOM_OPTION_PREFIX_CLASS_NAME_OF_FIELDS_TO_TOGGLE_HIDE = 'prefix_class_name_of_fields_to_toggle_hide';
     final public const CUSTOM_OPTION_CLASS_TO_ADD_TO_HIDE_ELEMENT = 'class_to_add_to_hide_element';
+    final public const CUSTOM_OPTION_REQUIRED_FIELDS_IF_SHOWN = 'required_fields_if_shown';
 
     public static function new(string $propertyName, ?string $label = null): self
     {
@@ -88,6 +86,7 @@ final class ToggleHideOtherFieldsField implements FieldInterface
     /** @param FieldInterface[] $fields */
     public function addFieldsToToggleHide(array $fields, array $fieldsRequiredIfShown = []): self
     {
+        $this->setCustomOption(self::CUSTOM_OPTION_REQUIRED_FIELDS_IF_SHOWN, $fieldsRequiredIfShown);
         $classes = [$this->getPrefix().$this->getAsDto()->getProperty(), $this->getHiddenClass()];
 
         foreach ($fields as $field) {
