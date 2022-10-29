@@ -50,13 +50,18 @@ class WarrantyCrudController extends AbstractCrudController
             ->hideOnIndex()
         ;
 
+        $hasExtendedWarrantyTime = ToggleHideOtherFieldsField::new('hasExtendedWarrantyTime')
+            ->addFieldsToToggleHide([$warrantyTimeField], [$warrantyTimeField])
+            ->onlyOnForms()
+        ;
+
         return [
             TextField::new('name', 'Nom'),
             DateField::new('startDate', 'Date d\'achat')->setFormTypeOption('input', 'datetime_immutable'),
             DateField::new('endDate', 'Date de fin de garantie')->hideOnForm(),
             NumberField::new('calculateWarrantyTime', 'Temps de garantie')->onlyOnIndex()->formatValue(fn (int $warrantyTime) => "$warrantyTime an(s)"),
             BooleanField::new('isSecondHandProduct', 'Produit d\'occasion ?'),
-            ToggleHideOtherFieldsField::new('hasExtendedWarrantyTime')->addFieldsToToggleHide([$warrantyTimeField], true, [$warrantyTimeField])->onlyOnForms(),
+            $hasExtendedWarrantyTime,
             $warrantyTimeField,
         ];
     }

@@ -86,13 +86,9 @@ final class ToggleHideOtherFieldsField implements FieldInterface
     }
 
     /** @param FieldInterface[] $fields */
-    public function addFieldsToToggleHide(array $fields, bool $fieldsHiddenByDefault = true, array $fieldsRequiredIfShown = []): self
+    public function addFieldsToToggleHide(array $fields, array $fieldsRequiredIfShown = []): self
     {
-        $classes = [$this->getPrefix().$this->getAsDto()->getProperty()];
-
-        if ($fieldsHiddenByDefault) {
-            $classes[] = $this->getHiddenClass();
-        }
+        $classes = [$this->getPrefix().$this->getAsDto()->getProperty(), $this->getHiddenClass()];
 
         foreach ($fields as $field) {
             $fieldDto = $field->getAsDto();
