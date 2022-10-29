@@ -4,7 +4,6 @@ EXEC-PHP-NO-TTY=$(EXEC) -T --user=1000 php
 EXEC-PHP=$(EXEC) --user=1000 php
 EXEC-PHP-ROOT=$(EXEC) php
 RUN-NODE=$(DC) run --rm node
-RUN-NODE-TI=$(DC) run --rm -Ti node
 
 ##Install :
 install: init-git-hook npm-install-build	## Installe le projet
@@ -15,7 +14,7 @@ npm-install:	## Lance un npm install
 npm-build:	## Lance un npm run build
 	$(RUN-NODE) npm run build
 npm-watch:	## Lance un npm run watch
-	$(RUN-NODE-TI) npm run watch
+	$(RUN-NODE) npm run watch
 npm-install-build: npm-install npm-build	## Lance un npm-install suivi d'un npm-build
 
 ##Containers :

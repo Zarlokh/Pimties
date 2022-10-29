@@ -24,11 +24,14 @@ class Warranty
     #[Column(type: "date_immutable")]
     private ?\DateTimeImmutable $endDate = null;
 
-    #[Column(type: "float")]
-    private ?float $warrantyTime = null;
+    #[Column(type: "float", nullable: true)]
+    private ?float $extendedWarrantyTime = null;
 
     #[Column(type: 'boolean')]
     private bool $isSecondHandProduct = false;
+
+    #[Column(type: 'boolean')]
+    private bool $hasExtendedWarrantyTime = false;
 
     public function __construct()
     {
@@ -59,14 +62,14 @@ class Warranty
         return $this;
     }
 
-    public function getWarrantyTime(): ?float
+    public function getExtendedWarrantyTime(): ?float
     {
-        return $this->warrantyTime;
+        return $this->extendedWarrantyTime;
     }
 
-    public function setWarrantyTime(?float $extendedWarranty): self
+    public function setExtendedWarrantyTime(?float $extendedWarranty): self
     {
-        $this->warrantyTime = $extendedWarranty;
+        $this->extendedWarrantyTime = $extendedWarranty;
 
         return $this;
     }
@@ -91,6 +94,27 @@ class Warranty
     public function setIsSecondHandProduct(bool $isSecondHandProduct): self
     {
         $this->isSecondHandProduct = $isSecondHandProduct;
+
+        return $this;
+    }
+
+    public function calculateWarrantyTime(): int
+    {
+        if (! $this->endDate) {
+            return 0;
+        }
+
+        return date_diff($this->startDate, $this->endDate)->y;
+    }
+
+    public function hasExtendedWarrantyTime(): bool
+    {
+        return $this->hasExtendedWarrantyTime;
+    }
+
+    public function setHasExtendedWarrantyTime(bool $hasExtendedWarrantyTime): self
+    {
+        $this->hasExtendedWarrantyTime = $hasExtendedWarrantyTime;
 
         return $this;
     }
