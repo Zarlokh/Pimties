@@ -29,6 +29,12 @@ class WarrantyCrudController extends AbstractCrudController
             ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
                 return $action->setLabel('Ajouter une facture');
             })
+            ->update(Crud::PAGE_NEW, Action::SAVE_AND_RETURN, function (Action $action) {
+                return $action->setLabel('Créer');
+            })
+            ->update(Crud::PAGE_NEW, Action::SAVE_AND_ADD_ANOTHER, function (Action $action) {
+                return $action->setLabel('Créer et ajouter un autre');
+            })
         ;
     }
 
@@ -40,7 +46,8 @@ class WarrantyCrudController extends AbstractCrudController
                 'endDate' => 'ASC'
             ])
             ->setPageTitle('new', 'Ajouter une facture')
-            ->setPageTitle('index', 'Liste des factures');
+            ->setPageTitle('index', 'Liste des factures')
+        ;
     }
 
     public function configureFields(string $pageName): iterable
@@ -50,7 +57,7 @@ class WarrantyCrudController extends AbstractCrudController
             ->hideOnIndex()
         ;
 
-        $hasExtendedWarrantyTime = ToggleHideOtherFieldsField::new('hasExtendedWarrantyTime')
+        $hasExtendedWarrantyTime = ToggleHideOtherFieldsField::new('hasExtendedWarrantyTime', 'Définir manuellement une durée de garantie')
             ->addFieldsToToggleHide([$warrantyTimeField], [$warrantyTimeField])
             ->onlyOnForms()
         ;
