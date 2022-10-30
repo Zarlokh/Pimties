@@ -3,7 +3,7 @@
 namespace App\Domain\Warranty;
 
 use App\Entity\Warranty;
-use App\Strategy\ProductConfigurationStrategy;
+use App\ProductConfiguration\ProductConfigurationStrategy;
 use App\Utils\DateTimeUtils;
 use App\Warranty\WarrantyEndDateUpdaterInterface;
 

@@ -2,8 +2,7 @@
 
 namespace App\Repository\Configuration;
 
-use App\Entity\Configuration\NewProductConfiguration;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\Configuration\Product\NewProductConfiguration;
 use Doctrine\Persistence\ManagerRegistry;
 
 class NewProductConfigurationRepository extends AbstractProductConfigurationRepository

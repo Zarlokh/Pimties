@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity\Configuration;
+namespace App\Entity\Configuration\Product;
 
 use App\Repository\Configuration\NewProductConfigurationRepository;
 use Doctrine\ORM\Mapping\Entity;

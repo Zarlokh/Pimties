@@ -2,7 +2,7 @@
 
 namespace App\Repository\Configuration;
 
-use App\Entity\Configuration\AbstractProductConfiguration;
+use App\Entity\Configuration\Product\AbstractProductConfiguration;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 abstract class AbstractProductConfigurationRepository extends ServiceEntityRepository

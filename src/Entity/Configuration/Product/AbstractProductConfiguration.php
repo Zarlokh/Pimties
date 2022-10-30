@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity\Configuration;
+namespace App\Entity\Configuration\Product;
 
 use App\Utils\Traits\EntityIdTrait;
 use Doctrine\ORM\Mapping\Column;

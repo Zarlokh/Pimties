@@ -3,9 +3,9 @@
 namespace App\Tests\Domain\Warranty;
 
 use App\Domain\Warranty\WarrantyCalculatedValuesUpdater;
-use App\Entity\Configuration\NewProductConfiguration;
+use App\Entity\Configuration\Product\NewProductConfiguration;
 use App\Entity\Warranty;
-use App\Strategy\ProductConfigurationStrategy;
+use App\ProductConfiguration\ProductConfigurationStrategy;
 use App\Tests\AbstractTestCase;
 use App\Utils\DateTimeUtils;
 

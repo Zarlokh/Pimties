@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Configuration\NewProductConfiguration;
+use App\Entity\Configuration\Product\NewProductConfiguration;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class NewProductConfigurationCrudController extends AbstractCrudController

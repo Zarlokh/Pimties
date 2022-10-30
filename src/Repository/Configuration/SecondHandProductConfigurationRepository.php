@@ -2,7 +2,7 @@
 
 namespace App\Repository\Configuration;
 
-use App\Entity\Configuration\SecondHandProductConfiguration;
+use App\Entity\Configuration\Product\SecondHandProductConfiguration;
 use Doctrine\Persistence\ManagerRegistry;
 
 class SecondHandProductConfigurationRepository extends AbstractProductConfigurationRepository

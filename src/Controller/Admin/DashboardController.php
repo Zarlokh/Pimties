@@ -2,8 +2,8 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Configuration\NewProductConfiguration;
-use App\Entity\Configuration\SecondHandProductConfiguration;
+use App\Entity\Configuration\Product\NewProductConfiguration;
+use App\Entity\Configuration\Product\SecondHandProductConfiguration;
 use App\Entity\Warranty;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;

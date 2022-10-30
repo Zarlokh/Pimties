@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Strategy;
+namespace App\ProductConfiguration;
 
-use App\Entity\Configuration\AbstractProductConfiguration;
+use App\Entity\Configuration\Product\AbstractProductConfiguration;
 use App\Entity\Warranty;
 use App\Exception\NoProductConfigurationFoundException;
 use App\Repository\Configuration\AbstractProductConfigurationRepository;
