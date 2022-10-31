@@ -1,3 +1,6 @@
 framework:
     mailer:
         dsn: '%env(MAILER_DSN)%'
+        headers:
+            from: "do-not-reply@pimties.com"
+            X-Auto-Response-Suppress: 'OOF, DR, RN, NRN, AutoReply'

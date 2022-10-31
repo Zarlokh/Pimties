@@ -7,17 +7,11 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\ConstraintViolation;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
+/** @psalm-suppress PropertyNotSetInConstructor */
 class RequireToggleHideOtherFieldsValidator extends ConstraintValidator
 {
-    /**
-     * @psalm-suppress PropertyNotSetInConstructor
-     * @var ExecutionContextInterface
-     */
-    protected $context;
-
     public function __construct(private readonly ValidatorInterface $validator)
     {
     }

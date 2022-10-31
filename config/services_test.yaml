@@ -1,0 +1,5 @@
+services:
+  App\Pinger\PingerFinder:
+    public: true
+    autoconfigure: true
+    autowire: true

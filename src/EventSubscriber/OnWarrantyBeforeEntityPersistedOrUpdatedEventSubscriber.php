@@ -3,7 +3,7 @@
 namespace App\EventSubscriber;
 
 use App\Entity\Warranty;
-use App\Warranty\WarrantyEndDateUpdaterInterface;
+use App\Warranty\WarrantyCalculatedValuesUpdaterInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Event\EntityLifecycleEventInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
@@ -11,7 +11,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class OnWarrantyBeforeEntityPersistedOrUpdatedEventSubscriber implements EventSubscriberInterface
 {
-    public function __construct(private readonly WarrantyEndDateUpdaterInterface $warrantyEndDateUpdater)
+    public function __construct(private readonly WarrantyCalculatedValuesUpdaterInterface $warrantyEndDateUpdater)
     {
     }
 

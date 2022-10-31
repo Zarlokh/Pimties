@@ -3,8 +3,14 @@ version: '3.7'
 services:
 ###> symfony/mailer ###
   mailer:
-    image: schickling/mailcatcher
-    ports: [1025, 1080]
+    image: tophfr/mailcatcher
+    expose:
+      - 80
     networks:
       - pimties
+      - hostmanager
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.{mailer}.rule=Host(`mail.pimties.localhost`)"
+      - "traefik.http.routers.{mailer}.tls=true"
 ###< symfony/mailer ###

@@ -5,10 +5,12 @@ namespace App\Controller\Admin;
 use App\Entity\Configuration\Product\NewProductConfiguration;
 use App\Entity\Configuration\Product\SecondHandProductConfiguration;
 use App\Entity\Warranty;
+use App\Factory\EmailFactory;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractDashboardController

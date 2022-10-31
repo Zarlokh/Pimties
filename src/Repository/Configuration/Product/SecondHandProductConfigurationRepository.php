@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository\Configuration;
+namespace App\Repository\Configuration\Product;
 
 use App\Entity\Configuration\Product\SecondHandProductConfiguration;
 use Doctrine\Persistence\ManagerRegistry;

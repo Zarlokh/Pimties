@@ -1,3 +1,4 @@
 #!/bin/sh
 
+"$(dirname "$0")"/sf-bash rm -rf var/cache/test
 "$(dirname "$0")"/sf-bash ./bin/phpunit "$@"

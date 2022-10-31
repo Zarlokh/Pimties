@@ -4,13 +4,12 @@ namespace App\Entity;
 
 use App\Factory\DateTimeFactory;
 use App\Utils\Traits\EntityIdTrait;
-use App\Validator\RequireToggleHideOtherFields;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 #[Entity]
-class Warranty
+class Warranty implements PingeableInterface
 {
     use EntityIdTrait;
 

@@ -5,9 +5,9 @@ namespace App\ProductConfiguration;
 use App\Entity\Configuration\Product\AbstractProductConfiguration;
 use App\Entity\Warranty;
 use App\Exception\NoProductConfigurationFoundException;
-use App\Repository\Configuration\AbstractProductConfigurationRepository;
-use App\Repository\Configuration\NewProductConfigurationRepository;
-use App\Repository\Configuration\SecondHandProductConfigurationRepository;
+use App\Repository\Configuration\Product\AbstractProductConfigurationRepository;
+use App\Repository\Configuration\Product\NewProductConfigurationRepository;
+use App\Repository\Configuration\Product\SecondHandProductConfigurationRepository;
 
 class ProductConfigurationStrategy
 {

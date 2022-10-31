@@ -5,9 +5,9 @@ namespace App\Domain\Warranty;
 use App\Entity\Warranty;
 use App\ProductConfiguration\ProductConfigurationStrategy;
 use App\Utils\DateTimeUtils;
-use App\Warranty\WarrantyEndDateUpdaterInterface;
+use App\Warranty\WarrantyCalculatedValuesUpdaterInterface;
 
-class WarrantyCalculatedValuesUpdater implements WarrantyEndDateUpdaterInterface
+class WarrantyCalculatedValuesUpdater implements WarrantyCalculatedValuesUpdaterInterface
 {
     public function __construct(
         private readonly DateTimeUtils                $dateTimeUtils,

@@ -4,7 +4,7 @@ namespace App\Warranty;
 
 use App\Entity\Warranty;
 
-interface WarrantyEndDateUpdaterInterface
+interface WarrantyCalculatedValuesUpdaterInterface
 {
     public function update(Warranty $warranty): void;
 }
