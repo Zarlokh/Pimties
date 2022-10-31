@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping\Table;
 #[InheritanceType('SINGLE_TABLE')]
 #[DiscriminatorColumn(name: 'type', type: 'string', length: 20)]
 #[DiscriminatorMap(['slack' => SlackPingerProviderConfiguration::class, 'email' => EmailPingerProviderConfiguration::class])]
-abstract class AbstractPingerProviderProviderConfiguration implements PingerProviderConfigurationInterface
+abstract class AbstractPingerProviderConfiguration implements PingerProviderConfigurationInterface
 {
     use EntityIdTrait;
 

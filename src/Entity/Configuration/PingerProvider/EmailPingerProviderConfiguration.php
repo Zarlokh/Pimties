@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 
 #[Entity]
-class EmailPingerProviderConfiguration extends AbstractPingerProviderProviderConfiguration
+class EmailPingerProviderConfiguration extends AbstractPingerProviderConfiguration
 {
     #[Column(type: 'string', length: 100)]
     private ?string $email = null;
