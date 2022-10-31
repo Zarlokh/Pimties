@@ -1,0 +1,24 @@
+abstract_product_configuration:
+  new_product_configuration: Produit neuf
+  second_hand_product_configuration: Produit d'occasion
+  title: Configuration de type de produit
+  type: Type de produit
+  warranty_time: Durée de garantie
+  add_new:
+    second_hand_product_configuration: Ajout d'une configuration de produit d'occasion
+    new_product_configuration: Ajout d'une configuration de produit neuf
+edit_new_product_configuration: Edition d'un produit neuf @id=%id%
+add_second_hand_product_configuration: Ajout d'une configuration de produit d'occasion
+add_new_product_configuration: Ajout d'une configuration de produit neuf
+menu_section_configuration: Configuration
+menu_section_bill: Facture
+abstract_pinger_provider_configuration:
+  email_provider:
+    email: Email
+  email_pinger_provider_configuration: Email "%email%"
+  title: Pinger Provider
+  type: Provider
+  enable: Actif ?
+  add_new:
+    email_pinger_provider_configuration: Ajout d'une configuration email
+    slack_pinger_provider_configuration: Ajout d'une configuration Slack

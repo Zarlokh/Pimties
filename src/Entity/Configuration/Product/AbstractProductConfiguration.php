@@ -2,6 +2,7 @@
 
 namespace App\Entity\Configuration\Product;
 
+use App\Entity\Configuration\AllChildOnSameCrudControllerInterface;
 use App\Utils\Traits\EntityIdTrait;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\DiscriminatorColumn;
@@ -15,7 +16,7 @@ use Doctrine\ORM\Mapping\Table;
 #[InheritanceType('SINGLE_TABLE')]
 #[DiscriminatorColumn(name: 'type', type: 'string', length: 20)]
 #[DiscriminatorMap(['new' => NewProductConfiguration::class, 'second-hand' => SecondHandProductConfiguration::class])]
-abstract class AbstractProductConfiguration
+abstract class AbstractProductConfiguration implements AllChildOnSameCrudControllerInterface
 {
     use EntityIdTrait;
 
@@ -33,6 +34,4 @@ abstract class AbstractProductConfiguration
 
         return $this;
     }
-
-    abstract public function getAdminListName(): string;
 }

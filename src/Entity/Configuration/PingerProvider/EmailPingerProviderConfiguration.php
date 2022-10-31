@@ -2,8 +2,10 @@
 
 namespace App\Entity\Configuration\PingerProvider;
 
+use App\Utils\ClassUtils;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
+use Symfony\Component\Translation\TranslatableMessage;
 
 #[Entity]
 class EmailPingerProviderConfiguration extends AbstractPingerProviderConfiguration
@@ -21,5 +23,10 @@ class EmailPingerProviderConfiguration extends AbstractPingerProviderConfigurati
         $this->email = $email;
 
         return $this;
+    }
+
+    public function getAdminListName(): string|TranslatableMessage
+    {
+        return new TranslatableMessage(sprintf('%s.%s', ClassUtils::getOnlyClassSnakeCase(parent::class), ClassUtils::getOnlyClassSnakeCase($this::class)), ['%email%' => $this->email ?? 'no email']);
     }
 }

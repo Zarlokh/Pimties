@@ -9,6 +9,8 @@ services:
     _instanceof:
         App\Pinger\Provider\PingerProviderInterface:
             tags: ['app.pinger_provider']
+        App\Admin\FieldProvider\FieldProviderInterface:
+            tags: ['app.field_provider']
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.

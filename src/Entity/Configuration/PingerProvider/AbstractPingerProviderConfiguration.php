@@ -2,6 +2,7 @@
 
 namespace App\Entity\Configuration\PingerProvider;
 
+use App\Entity\Configuration\AllChildOnSameCrudControllerInterface;
 use App\Repository\Configuration\PingerProvider\PingerProviderConfigurationRepository;
 use App\Utils\Traits\EntityIdTrait;
 use Doctrine\ORM\Mapping\Column;
@@ -16,7 +17,7 @@ use Doctrine\ORM\Mapping\Table;
 #[InheritanceType('SINGLE_TABLE')]
 #[DiscriminatorColumn(name: 'type', type: 'string', length: 20)]
 #[DiscriminatorMap(['slack' => SlackPingerProviderConfiguration::class, 'email' => EmailPingerProviderConfiguration::class])]
-abstract class AbstractPingerProviderConfiguration implements PingerProviderConfigurationInterface
+abstract class AbstractPingerProviderConfiguration implements PingerProviderConfigurationInterface, AllChildOnSameCrudControllerInterface
 {
     use EntityIdTrait;
 

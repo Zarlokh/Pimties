@@ -31,7 +31,7 @@ php-cs-fixer:	## Lance php-cs-fixer
 	$(EXEC-PHP-NO-TTY) tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --verbose --show-progress=none --config=.php-cs-fixer.dist.php
 
 psalm:	## Lance psalm
-	$(EXEC-PHP-NO-TTY) ./tools/psalm/psalm.phar
+	$(EXEC-PHP-NO-TTY) ./tools/psalm/psalm.phar --no-cache
 
 ##HELP
 help:                                                        ## show the help

@@ -2,6 +2,7 @@
 
 namespace App\EventSubscriber;
 
+use App\Entity\Configuration\Product\AbstractProductConfiguration;
 use App\Repository\Configuration\Product\AbstractProductConfigurationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
@@ -29,7 +30,7 @@ class OnBeforeProductConfigurationEvent implements EventSubscriberInterface
     public function onBeforeNewProductConfiguration(BeforeCrudActionEvent $event): void
     {
         $adminContext = $event->getAdminContext();
-        if (!$adminContext || Action::NEW !== $adminContext->getCrud()?->getCurrentAction()) {
+        if (!$adminContext || $adminContext->getEntity()->getName() !== AbstractProductConfiguration::class || Action::NEW !== $adminContext->getCrud()?->getCurrentAction()) {
             return;
         }
         $subclass = $adminContext->getRequest()->query->get('sub_class');
