@@ -8,4 +8,8 @@ use Doctrine\ORM\Mapping\Entity;
 #[Entity(repositoryClass: NewProductConfigurationRepository::class)]
 class NewProductConfiguration extends AbstractProductConfiguration
 {
+    public function getAdminListName(): string
+    {
+        return 'Produit neuf';
+    }
 }

@@ -15,4 +15,9 @@ abstract class AbstractProductConfigurationRepository extends ServiceEntityRepos
     {
         return $this->createQueryBuilder('c')->setMaxResults(1)->getQuery()->getOneOrNullResult();
     }
+
+    public function hasConfiguration(): bool
+    {
+        return (int) $this->createQueryBuilder('p')->select('count(p.id)')->getQuery()->getSingleScalarResult() > 0;
+    }
 }

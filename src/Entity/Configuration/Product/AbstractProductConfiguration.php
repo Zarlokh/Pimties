@@ -33,4 +33,6 @@ abstract class AbstractProductConfiguration
 
         return $this;
     }
+
+    abstract public function getAdminListName(): string;
 }
