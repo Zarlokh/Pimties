@@ -35,7 +35,7 @@ final class ToggleHideOtherFieldsField implements FieldInterface
             ->setCustomOption(self::CUSTOM_OPTION_PREFIX_CLASS_NAME_OF_FIELDS_TO_TOGGLE_HIDE, $defaultPrefix)
             ->setFormTypeOption('attr', [
                 'data-prefix' => $defaultPrefix,
-                'data-hide' => $defaultHideClass
+                'data-hide' => $defaultHideClass,
             ])
         ;
     }
@@ -61,7 +61,7 @@ final class ToggleHideOtherFieldsField implements FieldInterface
         $dto = $this->getAsDto();
         FieldUtils::addAttrToField($dto, [
             'data-prefix' => $dto->getCustomOption(self::CUSTOM_OPTION_PREFIX_CLASS_NAME_OF_FIELDS_TO_TOGGLE_HIDE),
-            'data-hide' => $dto->getCustomOption(self::CUSTOM_OPTION_CLASS_TO_ADD_TO_HIDE_ELEMENT)
+            'data-hide' => $dto->getCustomOption(self::CUSTOM_OPTION_CLASS_TO_ADD_TO_HIDE_ELEMENT),
         ]);
     }
 
@@ -95,7 +95,7 @@ final class ToggleHideOtherFieldsField implements FieldInterface
 
             if (in_array($field, $fieldsRequiredIfShown)) {
                 FieldUtils::addAttrToField($fieldDto, [
-                    'data-required-field' => true
+                    'data-required-field' => true,
                 ]);
             }
         }

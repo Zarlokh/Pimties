@@ -28,7 +28,7 @@ php-root:	## Se connecte au container php en root
 all-quality: php-cs-fixer psalm	## Lance php-cs-fixer et psalm
 
 php-cs-fixer:	## Lance php-cs-fixer
-	$(EXEC-PHP-NO-TTY) tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src
+	$(EXEC-PHP-NO-TTY) tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --verbose --show-progress=none --config=.php-cs-fixer.dist.php
 
 psalm:	## Lance psalm
 	$(EXEC-PHP-NO-TTY) ./tools/psalm/psalm.phar

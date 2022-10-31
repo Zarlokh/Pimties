@@ -20,7 +20,7 @@ abstract class AbstractPingerProviderProviderConfiguration implements PingerProv
 {
     use EntityIdTrait;
 
-    #[Column(type: "boolean")]
+    #[Column(type: 'boolean')]
     private bool $enable = false;
 
     public function isEnable(): bool

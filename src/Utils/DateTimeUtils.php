@@ -9,7 +9,7 @@ class DateTimeUtils
     public function addYears(\DateTimeImmutable $dateTime, float $years): \DateTimeImmutable
     {
         $intYears = (int) $years;
-        $newDate = $dateTime->add(new \DateInterval("P${intYears}Y"));
+        $newDate = $dateTime->add(new \DateInterval("P{$intYears}Y"));
 
         if ($intYears == $years) {
             return $newDate;
@@ -17,6 +17,6 @@ class DateTimeUtils
 
         $months = (int) (($years - $intYears) * self::MONTHS_IN_ONE_YEAR);
 
-        return $newDate->add(new \DateInterval("P${months}M"));
+        return $newDate->add(new \DateInterval("P{$months}M"));
     }
 }

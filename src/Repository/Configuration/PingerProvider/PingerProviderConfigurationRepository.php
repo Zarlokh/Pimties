@@ -16,6 +16,7 @@ class PingerProviderConfigurationRepository extends ServiceEntityRepository
     /**
      * @psalm-suppress MixedInferredReturnType
      * @psalm-suppress MixedReturnStatement
+     *
      * @return AbstractPingerProviderProviderConfiguration[]
      */
     public function findAllEnable(): array

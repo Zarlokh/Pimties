@@ -15,7 +15,7 @@ use Symfony\Component\Mailer\MailerInterface;
 
 class EmailPingerProvider extends AbstractPingerProviderProvider
 {
-    /** @var EmailNormalizerInterface[]  */
+    /** @var EmailNormalizerInterface[] */
     private readonly array $normalizers;
 
     public function __construct(
@@ -28,7 +28,7 @@ class EmailPingerProvider extends AbstractPingerProviderProvider
 
     public function ping(PingeableInterface $pingeable, PingerProviderConfigurationInterface $pingerConfiguration): void
     {
-        if (! ($normalizer = $this->normalizers[get_class($pingeable)] ?? false)) {
+        if (!($normalizer = $this->normalizers[get_class($pingeable)] ?? false)) {
             throw new NoNormalizerFoundException(sprintf('Aucun normalizer a été trouvé pour le pingeable %s et le provider %s', get_class($pingeable), __CLASS__));
         }
         $emailModel = $normalizer->normalize($pingeable);

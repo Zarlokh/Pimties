@@ -20,7 +20,7 @@ class RequireToggleHideOtherFields extends Constraint
     {
         return [
             self::OPTION_TOGGLE_FIELD,
-            self::OPTION_REQUIRED_FIELDS
+            self::OPTION_REQUIRED_FIELDS,
         ];
     }
 

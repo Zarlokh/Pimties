@@ -18,7 +18,7 @@ class RequireToggleHideOtherFieldsValidator extends ConstraintValidator
 
     public function validate(mixed $value, Constraint $constraint): void
     {
-        if (! $constraint instanceof RequireToggleHideOtherFields || (! is_object($value) && ! is_array($value))) {
+        if (!$constraint instanceof RequireToggleHideOtherFields || (!is_object($value) && !is_array($value))) {
             return;
         }
 

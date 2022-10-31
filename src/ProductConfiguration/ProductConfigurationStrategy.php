@@ -20,7 +20,7 @@ class ProductConfigurationStrategy
     ) {
         $this->repositories = [
           Warranty::NEW_PRODUCT => $newProductConfigurationRepository,
-          Warranty::SECOND_HAND_PRODUCT => $secondHandProductConfigurationRepository
+          Warranty::SECOND_HAND_PRODUCT => $secondHandProductConfigurationRepository,
         ];
     }
 
@@ -28,8 +28,8 @@ class ProductConfigurationStrategy
     {
         $productConfiguration = $this->repositories[$warranty->isSecondHandProduct() ? Warranty::SECOND_HAND_PRODUCT : Warranty::NEW_PRODUCT]->findProductConfiguration();
 
-        if (! $productConfiguration) {
-            throw new NoProductConfigurationFoundException('No product configuration found for warranty ' . ($warranty->isSecondHandProduct() ? 'second hand' : 'new product'));
+        if (!$productConfiguration) {
+            throw new NoProductConfigurationFoundException('No product configuration found for warranty '.($warranty->isSecondHandProduct() ? 'second hand' : 'new product'));
         }
 
         return $productConfiguration;

@@ -44,11 +44,11 @@ class ProductConfigurationCrudController extends AbstractCrudController
     /** @psalm-suppress MissingReturnType */
     public function createEntity(string $entityFqcn)
     {
-        if (! ($subClassname = $this->getContext()?->getRequest()->query->get('sub_class')) || ! is_string($subClassname)) {
+        if (!($subClassname = $this->getContext()?->getRequest()->query->get('sub_class')) || !is_string($subClassname)) {
             throw new \LogicException('Impossible de trouver la sous-classe');
         }
 
-        if (! class_exists($subClassname)) {
+        if (!class_exists($subClassname)) {
             throw new \LogicException(sprintf('La classe "%s" n\'existe pas', $subClassname));
         }
 
@@ -82,7 +82,7 @@ class ProductConfigurationCrudController extends AbstractCrudController
     {
         return [
             TextField::new('getAdminListName', 'Type de configuration')->onlyOnIndex(),
-            NumberField::new('warrantyTime', 'Temps de garantie par défaut')
+            NumberField::new('warrantyTime', 'Temps de garantie par défaut'),
         ];
     }
 }

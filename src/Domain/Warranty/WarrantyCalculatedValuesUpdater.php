@@ -10,7 +10,7 @@ use App\Warranty\WarrantyCalculatedValuesUpdaterInterface;
 class WarrantyCalculatedValuesUpdater implements WarrantyCalculatedValuesUpdaterInterface
 {
     public function __construct(
-        private readonly DateTimeUtils                $dateTimeUtils,
+        private readonly DateTimeUtils $dateTimeUtils,
         private readonly ProductConfigurationStrategy $productConfigurationStrategy
     ) {
     }

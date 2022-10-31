@@ -5,23 +5,14 @@ namespace App\Controller\Admin;
 use App\Admin\Field\ToggleHideOtherFieldsField;
 use App\Entity\Warranty;
 use App\Utils\Traits\Controller\AddConstraintForToggleHideOtherFieldsTrait;
-use App\Validator\RequireToggleHideOtherFields;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
-use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
-use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\HiddenField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use Symfony\Component\Form\FormBuilderInterface;
 
 class WarrantyCrudController extends AbstractCrudController
 {
@@ -52,7 +43,7 @@ class WarrantyCrudController extends AbstractCrudController
         return $crud
             ->showEntityActionsInlined()
             ->setDefaultSort([
-                'endDate' => 'ASC'
+                'endDate' => 'ASC',
             ])
             ->setPageTitle('new', 'Ajouter une facture')
             ->setPageTitle('index', 'Liste des factures')

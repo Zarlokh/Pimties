@@ -16,18 +16,18 @@ class Warranty implements PingeableInterface
     public const SECOND_HAND_PRODUCT = 0;
     public const NEW_PRODUCT = 1;
 
-    #[Column(type:"string", length: 30)]
+    #[Column(type: 'string', length: 30)]
     #[NotBlank]
     private ?string $name = null;
 
-    #[Column(type: "date_immutable")]
+    #[Column(type: 'date_immutable')]
     #[NotBlank]
     private \DateTimeImmutable $startDate;
 
-    #[Column(type: "date_immutable")]
+    #[Column(type: 'date_immutable')]
     private ?\DateTimeImmutable $endDate = null;
 
-    #[Column(type: "float", nullable: true)]
+    #[Column(type: 'float', nullable: true)]
     private ?float $extendedWarrantyTime = null;
 
     #[Column(type: 'boolean')]
@@ -103,7 +103,7 @@ class Warranty implements PingeableInterface
 
     public function calculateWarrantyTime(): int
     {
-        if (! $this->endDate) {
+        if (!$this->endDate) {
             return 0;
         }
 

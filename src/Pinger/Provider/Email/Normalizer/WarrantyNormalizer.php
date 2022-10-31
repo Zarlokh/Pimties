@@ -11,7 +11,7 @@ class WarrantyNormalizer implements EmailNormalizerInterface
 {
     public function normalize(PingeableInterface $pingeable): EmailModel
     {
-        if (! $pingeable instanceof Warranty) {
+        if (!$pingeable instanceof Warranty) {
             throw new \LogicException(sprintf('Le normalizer %s ne gère pas le pingeable %s', __CLASS__, get_class($pingeable)));
         }
 

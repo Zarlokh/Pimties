@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping\Entity;
 #[Entity]
 class EmailPingerProviderConfiguration extends AbstractPingerProviderProviderConfiguration
 {
-    #[Column(type: "string", length: 100)]
+    #[Column(type: 'string', length: 100)]
     private ?string $email = null;
 
     public function getEmail(): ?string

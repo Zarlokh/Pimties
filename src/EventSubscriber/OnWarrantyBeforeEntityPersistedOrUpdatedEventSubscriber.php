@@ -19,14 +19,14 @@ class OnWarrantyBeforeEntityPersistedOrUpdatedEventSubscriber implements EventSu
     {
         return [
             BeforeEntityUpdatedEvent::class => 'onBeforePersistOrUpdateEvent',
-            BeforeEntityPersistedEvent::class => 'onBeforePersistOrUpdateEvent'
+            BeforeEntityPersistedEvent::class => 'onBeforePersistOrUpdateEvent',
         ];
     }
 
     public function onBeforePersistOrUpdateEvent(EntityLifecycleEventInterface $event): void
     {
         $entity = $event->getEntityInstance();
-        if (! $entity instanceof Warranty) {
+        if (!$entity instanceof Warranty) {
             return;
         }
         $this->warrantyEndDateUpdater->update($entity);

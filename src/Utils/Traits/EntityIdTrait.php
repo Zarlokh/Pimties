@@ -10,7 +10,7 @@ trait EntityIdTrait
 {
     #[Id]
     #[GeneratedValue]
-    #[Column(type:"integer")]
+    #[Column(type: 'integer')]
     private ?int $id = null;
 
     public function getId(): ?int

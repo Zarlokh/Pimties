@@ -10,8 +10,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class OnBeforeProductConfigurationEvent implements EventSubscriberInterface
 {
@@ -24,19 +22,19 @@ class OnBeforeProductConfigurationEvent implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            BeforeCrudActionEvent::class => 'onBeforeNewProductConfiguration'
+            BeforeCrudActionEvent::class => 'onBeforeNewProductConfiguration',
         ];
     }
 
     public function onBeforeNewProductConfiguration(BeforeCrudActionEvent $event): void
     {
         $adminContext = $event->getAdminContext();
-        if (! $adminContext || Action::NEW !== $adminContext->getCrud()?->getCurrentAction()) {
+        if (!$adminContext || Action::NEW !== $adminContext->getCrud()?->getCurrentAction()) {
             return;
         }
         $subclass = $adminContext->getRequest()->query->get('sub_class');
 
-        if (! is_string($subclass) || ! class_exists($subclass)) {
+        if (!is_string($subclass) || !class_exists($subclass)) {
             return;
         }
         /** @var AbstractProductConfigurationRepository $repo */
@@ -44,7 +42,7 @@ class OnBeforeProductConfigurationEvent implements EventSubscriberInterface
         $session = $adminContext->getRequest()->getSession();
         $currentController = $event->getAdminContext()?->getCrud()->getControllerFqcn();
 
-        if (! $repo->hasConfiguration() || ! method_exists($session, 'getFlashBag') || ! ($flashBag = $session->getFlashBag()) instanceof FlashBagInterface || ! $currentController) {
+        if (!$repo->hasConfiguration() || !method_exists($session, 'getFlashBag') || !($flashBag = $session->getFlashBag()) instanceof FlashBagInterface || !$currentController) {
             return;
         }
 

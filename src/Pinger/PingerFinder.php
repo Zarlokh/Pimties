@@ -12,10 +12,11 @@ class PingerFinder
 {
     /**
      * @param PingerProviderInterface[] $pingers
+     *
      * @psalm-suppress InvalidAttribute
      */
     public function __construct(
-        #[TaggedIterator("app.pinger_provider")] private readonly iterable $pingers
+        #[TaggedIterator('app.pinger_provider')] private readonly iterable $pingers
     ) {
     }
 
@@ -32,6 +33,6 @@ class PingerFinder
                 return $pinger;
             }
         }
-        throw new NoPingerFoundException(sprintf('No pinger found for configuration %d %s', ($pingerConfiguration->getId() ?? 'no id'), get_class($pingerConfiguration)));
+        throw new NoPingerFoundException(sprintf('No pinger found for configuration %d %s', $pingerConfiguration->getId() ?? 'no id', get_class($pingerConfiguration)));
     }
 }
