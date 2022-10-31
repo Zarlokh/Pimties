@@ -1,3 +1,13 @@
+menu:
+  home: Accueil
+  bill:
+    bill: Factures
+  configuration:
+    product_configuration: Type de produit
+    pinger_provider: Pinger
+  section:
+    configuration: Configuration
+    bill: Facture
 abstract_product_configuration:
   new_product_configuration: Produit neuf
   second_hand_product_configuration: Produit d'occasion

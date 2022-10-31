@@ -27,11 +27,11 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Accueil', 'fa fa-home');
-        yield MenuItem::section('menu_section_configuration', 'fa-solid fa-gears');
-        yield MenuItem::linkToCrud('Configuration de produit', '', AbstractProductConfiguration::class);
-        yield MenuItem::linkToCrud('Configuration de pinger', '', AbstractPingerProviderConfiguration::class);
-        yield MenuItem::section('menu_section_bill', 'fa-solid fa-file-invoice-dollar');
-        yield MenuItem::linkToCrud('Factures', '', Warranty::class);
+        yield MenuItem::linkToDashboard('menu.home', 'fa fa-home');
+        yield MenuItem::section('menu.section.configuration', 'fa-solid fa-gears');
+        yield MenuItem::linkToCrud('menu.configuration.product_configuration', '', AbstractProductConfiguration::class);
+        yield MenuItem::linkToCrud('menu.configuration.pinger_provider', '', AbstractPingerProviderConfiguration::class);
+        yield MenuItem::section('menu.section.bill', 'fa-solid fa-file-invoice-dollar');
+        yield MenuItem::linkToCrud('menu.bill.bill', '', Warranty::class);
     }
 }
