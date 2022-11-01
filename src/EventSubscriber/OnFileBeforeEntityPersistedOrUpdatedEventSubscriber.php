@@ -2,17 +2,17 @@
 
 namespace App\EventSubscriber;
 
-use App\Entity\Warranty;
-use App\Warranty\WarrantyCalculatedValuesUpdaterInterface;
+use App\Entity\HasFileInterface;
+use App\Storage\FileUploader;
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Event\EntityLifecycleEventInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class OnWarrantyBeforeEntityPersistedOrUpdatedEventSubscriber implements EventSubscriberInterface
+class OnFileBeforeEntityPersistedOrUpdatedEventSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private readonly WarrantyCalculatedValuesUpdaterInterface $warrantyEndDateUpdater
+        private readonly FileUploader $fileUploader
     ) {
     }
 
@@ -27,9 +27,11 @@ class OnWarrantyBeforeEntityPersistedOrUpdatedEventSubscriber implements EventSu
     public function onBeforePersistOrUpdateEvent(EntityLifecycleEventInterface $event): void
     {
         $entity = $event->getEntityInstance();
-        if (!$entity instanceof Warranty) {
+
+        if (!$entity instanceof HasFileInterface) {
             return;
         }
-        $this->warrantyEndDateUpdater->update($entity);
+
+        $this->fileUploader->uploadFile($entity->getFile());
     }
 }

@@ -1,3 +1,19 @@
+warranty:
+  name: Nom
+  start_date: Date d'achat
+  end_date: Date de fin de garantie
+  warranty_time: Temps de garantie
+  is_second_hand: Produit d'occasion ?
+  bill_field: Facture
+  bill_filepath: Facture
+  has_extended_warranty_time: Définir manuellement une durée de garantie
+  extended_warranty_time: Temps de garantie
+  title: Liste des factures
+  add_new: Ajouter une facture
+  add_new_action: Ajouter une facture
+  add_new_another_action: Créer et ajouter un autre
+  create_action: Créer
+Enable: Actif ?
 menu:
   home: Accueil
   bill:
@@ -5,9 +21,18 @@ menu:
   configuration:
     product_configuration: Type de produit
     pinger_provider: Pinger
+    storage_provider: Système de stockage
   section:
     configuration: Configuration
     bill: Facture
+abstract_storage_provider_configuration:
+  type: Type de stockage
+  title: Système de stockage
+  file_system_storage_provider_configuration: Système de fichier
+  google_drive_storage_provider_configuration: Google Drive
+  add_new:
+    google_drive_storage_provider_configuration: Ajout d'un Google Drive
+    file_system_storage_provider_configuration: Ajout d'un système de fichier
 abstract_product_configuration:
   new_product_configuration: Produit neuf
   second_hand_product_configuration: Produit d'occasion

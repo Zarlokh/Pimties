@@ -2,14 +2,17 @@
 
 namespace App\Entity;
 
+use App\Entity\File\File;
 use App\Factory\DateTimeFactory;
 use App\Utils\Traits\EntityIdTrait;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\OneToOne;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 #[Entity]
-class Warranty implements PingeableInterface
+class Warranty implements PingeableInterface, HasFileInterface
 {
     use EntityIdTrait;
 
@@ -36,9 +39,14 @@ class Warranty implements PingeableInterface
     #[Column(type: 'boolean')]
     private bool $hasExtendedWarrantyTime = false;
 
+    #[OneToOne(targetEntity: File::class, cascade: ['all'], orphanRemoval: true)]
+    #[JoinColumn(name: 'file_id', referencedColumnName: 'id')]
+    private File $file;
+
     public function __construct()
     {
         $this->startDate = DateTimeFactory::createNow();
+        $this->file = new File();
     }
 
     public function getName(): ?string
@@ -118,6 +126,18 @@ class Warranty implements PingeableInterface
     public function setHasExtendedWarrantyTime(bool $hasExtendedWarrantyTime): self
     {
         $this->hasExtendedWarrantyTime = $hasExtendedWarrantyTime;
+
+        return $this;
+    }
+
+    public function getFile(): File
+    {
+        return $this->file;
+    }
+
+    public function setFile(File $file): self
+    {
+        $this->file = $file;
 
         return $this;
     }

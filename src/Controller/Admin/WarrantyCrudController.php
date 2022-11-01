@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Admin\Field\FileField;
 use App\Admin\Field\ToggleHideOtherFieldsField;
 use App\Entity\Warranty;
 use App\Utils\Traits\Controller\AddConstraintForToggleHideOtherFieldsTrait;
@@ -27,13 +28,13 @@ class WarrantyCrudController extends AbstractCrudController
     {
         return $actions
             ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
-                return $action->setLabel('Ajouter une facture');
+                return $action->setLabel('warranty.add_new_action');
             })
             ->update(Crud::PAGE_NEW, Action::SAVE_AND_RETURN, function (Action $action) {
-                return $action->setLabel('Créer');
+                return $action->setLabel('warranty.create_action');
             })
             ->update(Crud::PAGE_NEW, Action::SAVE_AND_ADD_ANOTHER, function (Action $action) {
-                return $action->setLabel('Créer et ajouter un autre');
+                return $action->setLabel('warranty.add_new_another_action');
             })
         ;
     }
@@ -45,29 +46,31 @@ class WarrantyCrudController extends AbstractCrudController
             ->setDefaultSort([
                 'endDate' => 'ASC',
             ])
-            ->setPageTitle('new', 'Ajouter une facture')
-            ->setPageTitle('index', 'Liste des factures')
+            ->setPageTitle('new', 'warranty.add_new')
+            ->setPageTitle('index', 'warranty.title')
         ;
     }
 
-    public function configureFields(string $pageName): iterable
+    public function configureFields(string $pageName): array
     {
-        $warrantyTimeField = NumberField::new('extendedWarrantyTime', 'Temps de garantie')
+        $warrantyTimeField = NumberField::new('extendedWarrantyTime', 'warranty.extended_warranty_time')
             ->setRequired(false)
             ->hideOnIndex()
         ;
 
-        $hasExtendedWarrantyTime = ToggleHideOtherFieldsField::new('hasExtendedWarrantyTime', 'Définir manuellement une durée de garantie')
+        $hasExtendedWarrantyTime = ToggleHideOtherFieldsField::new('hasExtendedWarrantyTime', 'warranty.has_extended_warranty_time')
             ->addFieldsToToggleHide([$warrantyTimeField], [$warrantyTimeField])
             ->onlyOnForms()
         ;
 
         return [
-            TextField::new('name', 'Nom'),
-            DateField::new('startDate', 'Date d\'achat')->setFormTypeOption('input', 'datetime_immutable'),
-            DateField::new('endDate', 'Date de fin de garantie')->hideOnForm(),
-            NumberField::new('calculateWarrantyTime', 'Temps de garantie')->onlyOnIndex()->formatValue(fn (int $warrantyTime) => "$warrantyTime an(s)"),
-            BooleanField::new('isSecondHandProduct', 'Produit d\'occasion ?'),
+            TextField::new('name', 'warranty.name'),
+            DateField::new('startDate', 'warranty.start_date')->setFormTypeOption('input', 'datetime_immutable'),
+            DateField::new('endDate', 'warranty.end_date')->hideOnForm(),
+            NumberField::new('calculateWarrantyTime', 'warranty.warranty_time')->onlyOnIndex()->formatValue(fn (int $warrantyTime) => "$warrantyTime an(s)"),
+            BooleanField::new('isSecondHandProduct', 'warranty.is_second_hand'),
+            FileField::new('file.transientUploadedFile', 'warranty.bill_field')->onlyOnForms(),
+            FileField::new('file.storageMetadata', 'warranty.bill_filepath')->onlyOnIndex(),
             $hasExtendedWarrantyTime,
             $warrantyTimeField,
         ];

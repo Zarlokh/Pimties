@@ -4,6 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    public_dir: '%kernel.project_dir%/public'
+    default_uploaded_dir: '%public_dir%/uploads'
 
 services:
     _instanceof:
@@ -11,13 +13,24 @@ services:
             tags: ['app.pinger_provider']
         App\Admin\FieldProvider\FieldProviderInterface:
             tags: ['app.field_provider']
+        App\Storage\Provider\StorageProviderInterface:
+            tags: ['app.storage_provider']
+        App\Storage\Provider\StorageUrlConverterInterface:
+            tags: ['app.storage_url_converter']
     _defaults:
+        bind:
+            string $defaultUploadedDir: '%default_uploaded_dir%'
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
-
     App\:
         resource: '../src/'
         exclude:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+
+    App\EntityListener\OnPrePostUpdateStorageMetadataEntityListener:
+        tags:
+            - name: 'doctrine.orm.entity_listener'
+              event: 'postRemove'
+              entity: 'App\Entity\File\StorageMetadata\AbstractStorageMetadata'

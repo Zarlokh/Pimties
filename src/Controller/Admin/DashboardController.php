@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Configuration\PingerProvider\AbstractPingerProviderConfiguration;
 use App\Entity\Configuration\Product\AbstractProductConfiguration;
+use App\Entity\Configuration\StorageProvider\AbstractStorageProviderConfiguration;
 use App\Entity\Warranty;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -31,6 +32,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('menu.section.configuration', 'fa-solid fa-gears');
         yield MenuItem::linkToCrud('menu.configuration.product_configuration', '', AbstractProductConfiguration::class);
         yield MenuItem::linkToCrud('menu.configuration.pinger_provider', '', AbstractPingerProviderConfiguration::class);
+        yield MenuItem::linkToCrud('menu.configuration.storage_provider', '', AbstractStorageProviderConfiguration::class);
         yield MenuItem::section('menu.section.bill', 'fa-solid fa-file-invoice-dollar');
         yield MenuItem::linkToCrud('menu.bill.bill', '', Warranty::class);
     }
