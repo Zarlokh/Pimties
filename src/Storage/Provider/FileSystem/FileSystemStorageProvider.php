@@ -24,6 +24,11 @@ class FileSystemStorageProvider implements StorageProviderInterface
         return $storageProviderConfiguration instanceof FileSystemStorageProviderConfiguration;
     }
 
+    public function supportForStorageMetadata(AbstractStorageMetadata $abstractStorageMetadata): bool
+    {
+        return $abstractStorageMetadata instanceof FileSystemStorageMetadata;
+    }
+
     public function upload(UploadedFile $file): string
     {
         $uniqFilename = uniqid('', true);
@@ -34,8 +39,12 @@ class FileSystemStorageProvider implements StorageProviderInterface
 
     public function delete(AbstractStorageMetadata $storageMetadata): void
     {
+        $filepath = $storageMetadata->getFilepath();
         /** @var FileSystemStorageMetadata $storageMetadata */
-        // TODO :
+        if (!$filepath || !file_exists($filepath)) {
+            return;
+        }
+        unlink($filepath);
     }
 
     public function getStorageMetadataFactory(): StorageMetadataFactoryInterface

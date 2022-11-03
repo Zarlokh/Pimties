@@ -11,6 +11,8 @@ interface StorageProviderInterface
 {
     public function support(StorageProviderConfigurationInterface $storageProviderConfiguration): bool;
 
+    public function supportForStorageMetadata(AbstractStorageMetadata $abstractStorageMetadata): bool;
+
     public function upload(UploadedFile $file): string;
 
     public function getStorageMetadataFactory(): StorageMetadataFactoryInterface;

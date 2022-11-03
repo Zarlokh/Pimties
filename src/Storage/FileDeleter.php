@@ -3,26 +3,25 @@
 namespace App\Storage;
 
 use App\Entity\File\StorageMetadata\AbstractStorageMetadata;
-use App\Exception\NoStorageProviderConfigurationEnableException;
-use App\Repository\Configuration\StorageProvider\StorageProviderConfigurationRepository;
+use App\Factory\RemoveFileMessageFactory;
 use App\Storage\Provider\StorageProviderLocator;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 class FileDeleter
 {
     public function __construct(
         private readonly StorageProviderLocator $storageProviderLocator,
-        private readonly StorageProviderConfigurationRepository $providerConfigurationRepository
+        private readonly MessageBusInterface $messageBus
     ) {
     }
 
-    public function deleteFile(AbstractStorageMetadata $storageMetadata): void
+    public function deleteFile(AbstractStorageMetadata $abstractStorageMetadata): void
     {
-        $enableStorageProviderConfiguration = $this->providerConfigurationRepository->findEnable();
+        $this->storageProviderLocator->getProviderByStorageMetadata($abstractStorageMetadata)->delete($abstractStorageMetadata);
+    }
 
-        if (!$enableStorageProviderConfiguration) {
-            throw new NoStorageProviderConfigurationEnableException('Aucune configuration de stockage a été configuré');
-        }
-
-        $this->storageProviderLocator->getProviderByConfiguration($enableStorageProviderConfiguration)->delete($storageMetadata);
+    public function deleteAsyncFile(AbstractStorageMetadata $storageMetadata): void
+    {
+        $this->messageBus->dispatch(RemoveFileMessageFactory::createForStorageMetadata($storageMetadata));
     }
 }
