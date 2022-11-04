@@ -1,0 +1,15 @@
+#!/bin/sh
+logDir=/var/log/messenger/async
+
+if [ ! -d $logDir ]; then
+    mkdir -p $logDir
+fi
+if [ "$(stat -c "%G" $logDir)" != "nogroup" ]; then
+    chgrp -R nogroup $logDir
+fi
+if [ "$(stat -c "%U" $logDir)" != "nobody" ]; then
+    chown -R nobody $logDir
+fi
+find $logDir -type d | xargs chmod g+rx
+
+exec logutil-service $logDir

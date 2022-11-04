@@ -1,37 +1,38 @@
-FROM php:8.1-fpm-alpine
+FROM php:8.1-fpm
 
 ENV APCU_VERSION 5.1.19
 ENV COMPOSER_VERSION 2.4.3
 
-RUN apk add --update --no-cache \
-        bash \
-        ca-certificates \
-        git \
-        icu-libs \
-        libxml2-dev \
-        unzip \
-        zip \
-        oniguruma-dev \
-        libzip-dev && \
-    apk add --update --no-cache --virtual .build-deps \
-        $PHPIZE_DEPS \
-        icu-dev && \
+RUN apt update &&  \
+    apt install -y ca-certificates  \
+    git \
+    libxml2-dev \
+    unzip \
+    zip \
+    libzip-dev \
+    libonig-dev  \
+    procps \
+    vim \
+    s6 && \
     pecl install apcu-${APCU_VERSION} xdebug && \
     docker-php-ext-install intl zip mysqli pdo_mysql mbstring && \
-    docker-php-ext-enable opcache apcu xdebug && \
-    apk del .build-deps && \
-    apk add su-exec && \
-    addgroup bar && \
-    adduser -D -h /home -s /bin/bash -G bar foo
+    docker-php-ext-enable opcache apcu xdebug
+RUN apt auto-clean
+RUN addgroup bar
+RUN adduser --home /home foo --shell /bin/bash --disabled-password --ingroup bar --gecos ""
+
+# S6 supervision overlay for docker ; Cf. https://skarnet.org/software/s6, https://github.com/just-containers/s6-overlay
+RUN curl -L https://github.com/just-containers/s6-overlay/releases/download/v1.22.1.0/s6-overlay-amd64.tar.gz | tar xz -C /
 
 # Composer
 RUN curl -sS https://getcomposer.org/installer \
         | php -- --filename=composer --install-dir=/usr/local/bin --version=${COMPOSER_VERSION}
 
-ADD entrypoint.sh /entrypoint
 COPY config/php.ini /usr/local/etc/php/php.ini
 COPY config/xdebug.ini /usr/local/etc/php/conf.d/debug.ini
 
+COPY rootfs /
+
 WORKDIR /srv
 
-ENTRYPOINT ["/entrypoint"]
+ENTRYPOINT ["/init"]

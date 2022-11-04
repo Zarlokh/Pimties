@@ -1,5 +1,11 @@
 framework:
     messenger:
+        buses:
+            command_bus:
+                middleware:
+                    - doctrine_ping_connection
+                    - doctrine_close_connection
+
         failure_transport: failed
 
         transports:
