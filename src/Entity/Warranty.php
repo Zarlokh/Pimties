@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\File\File;
 use App\Factory\DateTimeFactory;
+use App\Repository\WarrantyRepository;
 use App\Utils\Traits\EntityIdTrait;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -11,7 +12,7 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\OneToOne;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-#[Entity]
+#[Entity(repositoryClass: WarrantyRepository::class)]
 class Warranty implements PingeableInterface, HasFileInterface
 {
     use EntityIdTrait;
@@ -42,6 +43,12 @@ class Warranty implements PingeableInterface, HasFileInterface
     #[OneToOne(targetEntity: File::class, cascade: ['all'], orphanRemoval: true)]
     #[JoinColumn(name: 'file_id', referencedColumnName: 'id')]
     private File $file;
+
+    #[Column(type: 'date_immutable', nullable: true)]
+    private ?\DateTimeImmutable $pingPlannedAt = null;
+
+    #[Column(type: 'date_immutable', nullable: true)]
+    private ?\DateTimeImmutable $pingedAt = null;
 
     public function __construct()
     {
@@ -138,6 +145,30 @@ class Warranty implements PingeableInterface, HasFileInterface
     public function setFile(File $file): self
     {
         $this->file = $file;
+
+        return $this;
+    }
+
+    public function getPingPlannedAt(): ?\DateTimeImmutable
+    {
+        return $this->pingPlannedAt;
+    }
+
+    public function setPingPlannedAt(?\DateTimeImmutable $pingPlannedAt): self
+    {
+        $this->pingPlannedAt = $pingPlannedAt;
+
+        return $this;
+    }
+
+    public function getPingedAt(): ?\DateTimeImmutable
+    {
+        return $this->pingedAt;
+    }
+
+    public function setPingedAt(\DateTimeImmutable $pingedAt): self
+    {
+        $this->pingedAt = $pingedAt;
 
         return $this;
     }

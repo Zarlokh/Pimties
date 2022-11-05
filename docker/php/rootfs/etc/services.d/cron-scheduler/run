@@ -1,0 +1,4 @@
+#!/usr/bin/with-contenv sh
+
+cd /srv
+exec s6-setuidgid 1000:1000 ./bin/console app:cron:schedule --verbose --max-schedule-count=300 --interval-each-schedule=60

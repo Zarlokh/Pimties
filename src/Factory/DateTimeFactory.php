@@ -2,7 +2,9 @@
 
 namespace App\Factory;
 
-class DateTimeFactory
+use App\Domain\DateTimeFactoryInterface;
+
+class DateTimeFactory implements DateTimeFactoryInterface
 {
     public static function createNow(): \DateTimeImmutable
     {

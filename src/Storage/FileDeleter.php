@@ -3,7 +3,7 @@
 namespace App\Storage;
 
 use App\Entity\File\StorageMetadata\AbstractStorageMetadata;
-use App\Factory\RemoveFileMessageFactory;
+use App\Factory\Message\RemoveFileMessageFactory;
 use App\Storage\Provider\StorageProviderLocator;
 use Symfony\Component\Messenger\MessageBusInterface;
 

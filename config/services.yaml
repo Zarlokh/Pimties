@@ -17,6 +17,8 @@ services:
             tags: ['app.storage_provider']
         App\Storage\Provider\StorageUrlConverterInterface:
             tags: ['app.storage_url_converter']
+        App\Command\Cron\CronInterface:
+            tags: ['app.cron_command']
     _defaults:
         bind:
             string $defaultUploadedDir: '%default_uploaded_dir%'
