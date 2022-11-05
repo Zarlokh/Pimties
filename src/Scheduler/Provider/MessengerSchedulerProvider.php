@@ -26,8 +26,7 @@ class MessengerSchedulerProvider implements SchedulerProviderInterface
 
     public function schedulePingInfo(PingInfoInterface $pingInfo): void
     {
-        /** @var PingInfoMessage $scheduleCronInfo */
-        $this->messageBus->dispatch($scheduleCronInfo);
+        $this->messageBus->dispatch($pingInfo);
     }
 
     public function schedule(ScheduleCronInfoInterface $scheduleCronInfo): void

@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\OneToOne;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 #[Entity(repositoryClass: WarrantyRepository::class)]
@@ -22,6 +23,7 @@ class Warranty implements PingeableInterface, HasFileInterface
 
     #[Column(type: 'string', length: 30)]
     #[NotBlank]
+    #[Length(max: 30)]
     private ?string $name = null;
 
     #[Column(type: 'date_immutable')]
@@ -44,10 +46,10 @@ class Warranty implements PingeableInterface, HasFileInterface
     #[JoinColumn(name: 'file_id', referencedColumnName: 'id')]
     private File $file;
 
-    #[Column(type: 'date_immutable', nullable: true)]
+    #[Column(type: 'datetime_immutable', nullable: true)]
     private ?\DateTimeImmutable $pingPlannedAt = null;
 
-    #[Column(type: 'date_immutable', nullable: true)]
+    #[Column(type: 'datetime_immutable', nullable: true)]
     private ?\DateTimeImmutable $pingedAt = null;
 
     public function __construct()

@@ -13,6 +13,8 @@ warranty:
   add_new_action: Ajouter une facture
   add_new_another_action: Créer et ajouter un autre
   create_action: Créer
+  ping_planned_at: Ping programmé pour le
+  pinged_at: Pingé le
 Enable: Actif ?
 menu:
   home: Accueil

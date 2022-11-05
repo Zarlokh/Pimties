@@ -15,8 +15,12 @@ RUN apt update &&  \
     vim \
     s6 && \
     pecl install apcu-${APCU_VERSION} xdebug && \
+    #TODO : Enable & configure xdebug
+#    pecl install xdebug && \
     docker-php-ext-install intl zip mysqli pdo_mysql mbstring && \
-    docker-php-ext-enable opcache apcu xdebug
+    #TODO : Enable & configure xdebug
+#    docker-php-ext-enable  xdebug && \
+    docker-php-ext-enable opcache apcu
 RUN apt auto-clean
 RUN addgroup bar
 RUN adduser --home /home foo --shell /bin/bash --disabled-password --ingroup bar --gecos ""

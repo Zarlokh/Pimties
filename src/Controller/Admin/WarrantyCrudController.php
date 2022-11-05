@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -55,7 +56,7 @@ class WarrantyCrudController extends AbstractCrudController
     {
         $warrantyTimeField = NumberField::new('extendedWarrantyTime', 'warranty.extended_warranty_time')
             ->setRequired(false)
-            ->hideOnIndex()
+            ->onlyOnForms()
         ;
 
         $hasExtendedWarrantyTime = ToggleHideOtherFieldsField::new('hasExtendedWarrantyTime', 'warranty.has_extended_warranty_time')
@@ -66,11 +67,13 @@ class WarrantyCrudController extends AbstractCrudController
         return [
             TextField::new('name', 'warranty.name'),
             DateField::new('startDate', 'warranty.start_date')->setFormTypeOption('input', 'datetime_immutable'),
-            DateField::new('endDate', 'warranty.end_date')->hideOnForm(),
+            FileField::new('file.transientUploadedFile', 'warranty.bill_field')->onlyOnForms(),
+            DateField::new('endDate', 'warranty.end_date')->onlyOnIndex(),
             NumberField::new('calculateWarrantyTime', 'warranty.warranty_time')->onlyOnIndex()->formatValue(fn (int $warrantyTime) => "$warrantyTime an(s)"),
             BooleanField::new('isSecondHandProduct', 'warranty.is_second_hand'),
-            FileField::new('file.transientUploadedFile', 'warranty.bill_field')->onlyOnForms(),
             FileField::new('file.storageMetadata', 'warranty.bill_filepath')->onlyOnIndex(),
+            DateTimeField::new('pingPlannedAt', 'warranty.ping_planned_at')->onlyOnIndex(),
+            DateTimeField::new('pingedAt', 'warranty.pinged_at')->onlyOnIndex(),
             $hasExtendedWarrantyTime,
             $warrantyTimeField,
         ];
