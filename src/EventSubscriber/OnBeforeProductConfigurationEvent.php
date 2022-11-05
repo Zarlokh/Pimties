@@ -30,7 +30,7 @@ class OnBeforeProductConfigurationEvent implements EventSubscriberInterface
     public function onBeforeNewProductConfiguration(BeforeCrudActionEvent $event): void
     {
         $adminContext = $event->getAdminContext();
-        if (!$adminContext || $adminContext->getEntity()->getName() !== AbstractProductConfiguration::class || Action::NEW !== $adminContext->getCrud()?->getCurrentAction()) {
+        if (!$adminContext || $adminContext->getEntity()->getFqcn() !== AbstractProductConfiguration::class || Action::NEW !== $adminContext->getCrud()?->getCurrentAction()) {
             return;
         }
         $subclass = $adminContext->getRequest()->query->get('sub_class');
