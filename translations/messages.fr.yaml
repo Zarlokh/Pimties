@@ -1,3 +1,6 @@
+storage_provider_configuration:
+  name: Nom
+  enable: Actif ? (1 max)
 warranty:
   name: Nom
   start_date: Date d'achat

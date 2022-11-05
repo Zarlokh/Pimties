@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Configuration\StorageProvider\AbstractStorageProviderConfiguration;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 /** @psalm-suppress PropertyNotSetInConstructor */
 class StorageProviderConfigurationCrudController extends AbstractInheritCrudController
@@ -16,7 +17,8 @@ class StorageProviderConfigurationCrudController extends AbstractInheritCrudCont
     protected function getFields(): array
     {
         return [
-            BooleanField::new('enable'),
+            TextField::new('name', 'storage_provider_configuration.name')->setMaxLength(30),
+            BooleanField::new('enable', 'storage_provider_configuration.enable'),
         ];
     }
 }

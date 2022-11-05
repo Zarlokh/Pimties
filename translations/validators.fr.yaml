@@ -1,0 +1,2 @@
+unique_enable:
+  cannot_enable_another: Une entité active existe déjà
