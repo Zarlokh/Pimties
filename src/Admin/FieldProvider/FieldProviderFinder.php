@@ -2,6 +2,7 @@
 
 namespace App\Admin\FieldProvider;
 
+use App\Entity\Configuration\PingerProvider\PingerProviderConfigurationInterface;
 use App\Exception\NoFieldProviderFoundException;
 use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
 
@@ -17,12 +18,12 @@ class FieldProviderFinder
     ) {
     }
 
-    public function getFields(object $instance): array
+    public function getFields(PingerProviderConfigurationInterface $instance): array
     {
         return $this->getProviderForInstance($instance)->getFields();
     }
 
-    protected function getProviderForInstance(object $instance): FieldProviderInterface
+    protected function getProviderForInstance(PingerProviderConfigurationInterface $instance): FieldProviderInterface
     {
         foreach ($this->providers as $provider) {
             if ($provider->supports($instance)) {
@@ -30,6 +31,6 @@ class FieldProviderFinder
             }
         }
 
-        throw new NoFieldProviderFoundException('No field provider found for instance '.get_class($instance));
+        throw new NoFieldProviderFoundException('No field provider found for pinger provider c '.get_class($instance));
     }
 }

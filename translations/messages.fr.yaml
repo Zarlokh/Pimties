@@ -9,8 +9,8 @@ warranty:
   is_second_hand: Produit d'occasion ?
   bill_field: Facture
   bill_filepath: Facture
-  has_extended_warranty_time: Définir manuellement une durée de garantie
-  extended_warranty_time: Temps de garantie
+  has_extended_warranty_time: Définir une extension de garantie
+  extended_warranty_time: Extension de garantie
   title: Liste des factures
   add_new: Ajouter une facture
   add_new_action: Ajouter une facture
@@ -53,8 +53,11 @@ add_new_product_configuration: Ajout d'une configuration de produit neuf
 menu_section_configuration: Configuration
 menu_section_bill: Facture
 abstract_pinger_provider_configuration:
+  slack_pinger_provider_configuration: Slack %webhook%
   email_provider:
     email: Email
+  slack_provider:
+    slack_webhook: URL du Webhook
   email_pinger_provider_configuration: Email "%email%"
   title: Pinger Provider
   type: Provider

@@ -14,7 +14,7 @@ RUN apt update &&  \
     procps \
     vim \
     s6 && \
-    pecl install apcu-${APCU_VERSION} xdebug && \
+    pecl install apcu-${APCU_VERSION} && \
     #TODO : Enable & configure xdebug
 #    pecl install xdebug && \
     docker-php-ext-install intl zip mysqli pdo_mysql mbstring && \
