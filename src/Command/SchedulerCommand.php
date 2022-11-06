@@ -22,8 +22,8 @@ class SchedulerCommand extends Command
     {
         $this
             ->setDescription('Commande de planificateur de cron')
-            ->addOption(self::OPTION_MAX_SCHEDULE_COUNT, '', InputOption::VALUE_REQUIRED, 'Nombre max de schedule avant de kill la commande', 300)
-            ->addOption(self::OPTION_INTERVAL_EACH_SCHEDULE, '', InputOption::VALUE_REQUIRED, 'Temps d\'attente entre chaque "schedule all crons"', 60)
+            ->addOption(name: self::OPTION_MAX_SCHEDULE_COUNT, mode: InputOption::VALUE_REQUIRED, description: 'Nombre max de schedule avant de kill la commande', default: 300)
+            ->addOption(name: self::OPTION_INTERVAL_EACH_SCHEDULE, mode: InputOption::VALUE_REQUIRED, description: 'Temps d\'attente entre chaque "schedule all crons"', default: 60)
         ;
     }
 

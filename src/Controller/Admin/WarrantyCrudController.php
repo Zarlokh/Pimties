@@ -66,7 +66,7 @@ class WarrantyCrudController extends AbstractCrudController
 
         return [
             TextField::new('name', 'warranty.name'),
-            DateField::new('startDate', 'warranty.start_date')->setFormTypeOption('input', 'datetime_immutable'),
+            DateField::new('startDate', 'warranty.start_date')->setFormTypeOption('input', 'datetime_immutable')->onlyWhenCreating(),
             FileField::new('file.transientUploadedFile', 'warranty.bill_field')->onlyOnForms(),
             DateField::new('endDate', 'warranty.end_date')->onlyOnIndex(),
             NumberField::new('calculateWarrantyTime', 'warranty.warranty_time')->onlyOnIndex()->formatValue(fn (int $warrantyTime) => "$warrantyTime an(s)"),

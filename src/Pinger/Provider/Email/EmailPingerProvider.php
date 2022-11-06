@@ -8,12 +8,12 @@ use App\Entity\PingeableInterface;
 use App\Entity\Warranty;
 use App\Exception\NoNormalizerFoundException;
 use App\Factory\EmailFactory;
-use App\Pinger\Provider\AbstractPingerProviderProvider;
+use App\Pinger\Provider\AbstractPingerProvider;
 use App\Pinger\Provider\Email\Normalizer\EmailNormalizerInterface;
 use App\Pinger\Provider\Email\Normalizer\WarrantyNormalizer;
 use Symfony\Component\Mailer\MailerInterface;
 
-class EmailPingerProvider extends AbstractPingerProviderProvider
+class EmailPingerProvider extends AbstractPingerProvider
 {
     /** @var EmailNormalizerInterface[] */
     private readonly array $normalizers;
