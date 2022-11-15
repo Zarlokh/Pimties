@@ -1,4 +1,4 @@
 #!/usr/bin/with-contenv sh
 
 cd /srv
-exec s6-setuidgid 1000:1000 ./bin/console messenger:consume async --verbose --limit=100
+exec s6-setuidgid 1000:1000 ./bin/console messenger:consume async -vvv --limit=100

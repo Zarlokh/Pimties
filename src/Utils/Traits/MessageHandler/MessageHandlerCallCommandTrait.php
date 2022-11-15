@@ -4,7 +4,7 @@ namespace App\Utils\Traits\MessageHandler;
 
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
-use Symfony\Component\Console\Output\NullOutput;
+use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 trait MessageHandlerCallCommandTrait
@@ -22,7 +22,7 @@ trait MessageHandlerCallCommandTrait
     {
         $command = $this->application->find($commandName);
         $input = new ArrayInput(array_merge($args, $options));
-        $output = new NullOutput();
+        $output = new ConsoleOutput();
 
         $command->run($input, $output);
     }
