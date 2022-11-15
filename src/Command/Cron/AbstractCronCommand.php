@@ -27,20 +27,17 @@ abstract class AbstractCronCommand extends Command implements CronInterface
     {
         foreach ($this->dateTimePatterns as $dateTimePattern) {
             $matches = null;
+
             if (!preg_match('/^(\d{4}|\*)\-(\d{2}|\*)\-(\d{2}|\*) (\d{2}|\*):(\d{2}|\*)$/', $dateTimePattern, $matches)) {
                 throw new InvalidConfigurationException('Bad DateTime pattern for cron '.($this->getName() ?? 'no name').': '.$dateTimePattern);
             }
-            $year = '*' == $matches[1] ? $now->format('Y') : $matches[1];
-            $month = '*' == $matches[2] ? $now->format('m') : $matches[2];
-            $day = '*' == $matches[3] ? $now->format('d') : $matches[3];
-            $hour = '*' == $matches[4] ? $now->format('H') : $matches[4];
-            $minute = '*' == $matches[5] ? $now->format('i') : $matches[5];
-            $second = '00';
+            $year = '*' === $matches[1] ? $now->format('Y') : $matches[1];
+            $month = '*' === $matches[2] ? $now->format('m') : $matches[2];
+            $day = '*' === $matches[3] ? $now->format('d') : $matches[3];
+            $hour = '*' === $matches[4] ? $now->format('H') : $matches[4];
+            $minute = '*' === $matches[5] ? $now->format('i') : $matches[5];
 
-            /**
-             * @var \DateTime $dateCandidate
-             */
-            $dateCandidate = \DateTime::createFromFormat('Y-m-d H:i:s', $year.'-'.$month.'-'.$day.' '.$hour.':'.$minute.':'.$second);
+            $dateCandidate = \DateTime::createFromFormat('Y-m-d H:i:s', $year.'-'.$month.'-'.$day.' '.$hour.':'.$minute.':00');
 
             if ($now->getTimestamp() >= $dateCandidate->getTimestamp()) {
                 return true;

@@ -2,8 +2,8 @@
 
 namespace App\Scheduler\Provider;
 
-use App\Message\PingInfoMessage;
-use App\Message\ScheduleCronInfoMessage;
+use App\Messenger\Message\PingInfoMessage;
+use App\Messenger\Message\ScheduleCronInfoMessage;
 use App\Scheduler\PingInfoInterface;
 use App\Scheduler\ScheduleCronInfoInterface;
 use Symfony\Component\Messenger\MessageBusInterface;

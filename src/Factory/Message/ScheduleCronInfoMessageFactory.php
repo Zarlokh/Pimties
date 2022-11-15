@@ -2,7 +2,7 @@
 
 namespace App\Factory\Message;
 
-use App\Message\ScheduleCronInfoMessage;
+use App\Messenger\Message\ScheduleCronInfoMessage;
 
 class ScheduleCronInfoMessageFactory
 {

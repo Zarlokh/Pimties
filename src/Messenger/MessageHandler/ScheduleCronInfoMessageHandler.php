@@ -1,8 +1,8 @@
 <?php
 
-namespace App\MessageHandler;
+namespace App\Messenger\MessageHandler;
 
-use App\Message\ScheduleCronInfoMessage;
+use App\Messenger\Message\ScheduleCronInfoMessage;
 use App\Utils\Traits\MessageHandler\MessageHandlerCallCommandTrait;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 

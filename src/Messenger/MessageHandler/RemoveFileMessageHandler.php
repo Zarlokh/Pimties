@@ -1,8 +1,8 @@
 <?php
 
-namespace App\MessageHandler;
+namespace App\Messenger\MessageHandler;
 
-use App\Message\RemoveFileMessage;
+use App\Messenger\Message\RemoveFileMessage;
 use App\Storage\FileDeleter;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 

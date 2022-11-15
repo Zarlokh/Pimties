@@ -1,9 +1,9 @@
 <?php
 
-namespace App\MessageHandler;
+namespace App\Messenger\MessageHandler;
 
 use App\Command\PingPingeableCommand;
-use App\Message\PingInfoMessage;
+use App\Messenger\Message\PingInfoMessage;
 use App\Utils\Traits\MessageHandler\MessageHandlerCallCommandTrait;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 

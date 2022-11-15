@@ -4,7 +4,7 @@ namespace App\Factory\PingInfo\Provider;
 
 use App\Entity\PingeableInterface;
 use App\Factory\PingInfo\PingInfoFactoryInterface;
-use App\Message\PingInfoMessage;
+use App\Messenger\Message\PingInfoMessage;
 use App\Scheduler\PingInfoInterface;
 
 class PingMessageFactory implements PingInfoFactoryInterface

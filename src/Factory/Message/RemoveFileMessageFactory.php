@@ -3,7 +3,7 @@
 namespace App\Factory\Message;
 
 use App\Entity\File\StorageMetadata\AbstractStorageMetadata;
-use App\Message\RemoveFileMessage;
+use App\Messenger\Message\RemoveFileMessage;
 
 class RemoveFileMessageFactory
 {
